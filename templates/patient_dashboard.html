@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patient Dashboard</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2, h3 {
+            color: #333;
+        }
+
+        /* Appointment Section */
+        .appointments-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .appt-item {
+            border-bottom: 1px solid #ddd;
+            padding: 12px 0;
+        }
+
+        .appt-item:last-child {
+            border-bottom: none;
+        }
+
+        .cancel-btn {
+            background: red;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        /* Doctor Cards */
+        .doctor-card {
+            display: inline-block;
+            width: 260px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 15px;
+            text-align: center;
+            border-radius: 5px;
+            background: white;
+            box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .doctor-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background: #2b7bff;
+            color: white;
+            padding: 8px 12px;
+            margin-top: 10px;
+            display: inline-block;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+<h2>Welcome {{ patient.name }}</h2>
+
+<!-- ---------------------- -->
+<!-- SECTION: Patient Appointments -->
+<!-- ---------------------- -->
+<h3>Your Appointments</h3>
+
+<div class="appointments-box">
+
+    {% if appointments|length == 0 %}
+        <p>You have no upcoming appointments.</p>
+    {% else %}
+
+        {% for a in appointments %}
+        <div class="appt-item">
+
+            <b>Doctor:</b> Dr. {{ a.doctor_name }} <br>
+            <b>Date:</b> {{ a.date }} <br>
+            <b>Slot:</b> {{ a.slot }} <br>
+
+        </div>
+        {% endfor %}
+
+    {% endif %}
+
+</div>
+
+
+
+<h3>Available Doctors</h3>
+
+{% for d in doctors %}
+
+<div class="doctor-card">
+
+    <img src="/{{ d.photo }}" alt="Doctor Photo">
+
+    <h3>Dr. {{ d.name }}</h3>
+
+    <p><b>Specialization:</b> {{ d.specialization }}</p>
+    <p><b>Experience:</b> {{ d.experience }} years</p>
+    <p><b>Phone:</b> {{ d.phoneno }}</p>
+
+    <a href="/patient/book/{{ d.id }}" class="btn">Book Appointment</a>
+
+</div>
+
+{% endfor %}
+
+</body>
+</html>

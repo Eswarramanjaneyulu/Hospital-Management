@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booked Appointments</title>
+
+    <style>
+        body { font-family: Arial, sans-serif; }
+        table {
+            width: 70%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, tr, th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+        .navbar {
+            background: #2c3e50;
+            padding: 12px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="/doctor/dashboard/{{ doctor.id }}">Back to Dashboard</a>
+</div>
+
+<h2>Booked Appointments for Dr. {{ doctor.name }}</h2>
+
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Slot</th>
+        <th>Patient Name</th>
+        <th>Phone</th>
+    </tr>
+
+    {% for a in appointments %}
+    <tr>
+        <td>{{ a.date }}</td>
+        <td>{{ a.slot }}</td>
+        <td>{{ a.patient_name }}</td>
+        <td>{{ a.patient_phone }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

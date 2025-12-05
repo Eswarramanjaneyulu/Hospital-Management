@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Set Availability</title>
+
+    <style>
+        .slot-box {
+            margin-bottom: 5px;
+        }
+
+        .container {
+            width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 8px 15px;
+            background: #2b7bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #2b7bff;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Set Available Slots</h2>
+
+    <a href="/doctor/dashboard/{{ doctor_id }}">Back to Dashboard</a>
+    <br><br>
+
+    <form method="post">
+
+        <label>Select Date:</label>
+        <input type="date" name="date" required><br><br>
+
+        <label>Select Available Slots:</label><br>
+
+        <div class="slot-box">
+            <input type="checkbox" name="slots" value="9:00 AM - 10:00 AM"> 9:00 AM - 10:00 AM
+        </div>
+        <div class="slot-box">
+            <input type="checkbox" name="slots" value="10:00 AM - 11:00 AM"> 10:00 AM - 11:00 AM
+        </div>
+        <div class="slot-box">
+            <input type="checkbox" name="slots" value="11:00 AM - 12:00 PM"> 11:00 AM - 12:00 PM
+        </div>
+        <div class="slot-box">
+            <input type="checkbox" name="slots" value="12:00 PM - 1:00 PM"> 12:00 PM - 1:00 PM
+        </div>
+        <div class="slot-box">
+            <input type="checkbox" name="slots" value="1:00 PM - 2:00 PM"> 1:00 PM - 2:00 PM
+        </div>
+        <div class="slot-box">
+            <input type="checkbox" name="slots" value="2:00 PM - 3:00 PM"> 2:00 PM - 3:00 PM
+        </div>
+        <div class="slot-box">
+            <input type="checkbox" name="slots" value="3:00 PM - 4:00 PM"> 3:00 PM - 4:00 PM
+        </div>
+        <div class="slot-box">
+            <input type="checkbox" name="slots" value="4:00 PM - 5:00 PM"> 4:00 PM - 5:00 PM
+        </div>
+        <div class="slot-box">
+            <input type="checkbox" name="slots" value="5:00 PM - 6:00 PM"> 5:00 PM - 6:00 PM
+        </div>
+        <div class="slot-box">
+            <input type="checkbox" name="slots" value="6:00 PM - 7:00 PM"> 6:00 PM - 7:00 PM
+        </div>
+
+        <button type="submit">Save Slots</button>
+
+    </form>
+</div>
+
+</body>
+</html>

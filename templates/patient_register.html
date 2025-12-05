@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Registration</title>
+</head>
+<body>
+
+    <h2>Patient Registration</h2>
+
+    <form action="/patient/register" method="post">
+
+        <label>Name:</label><br>
+        <input type="text" name="name" required><br><br>
+
+        <label>Email:</label><br>
+        <input type="email" name="email" required><br><br>
+
+        <label>Password:</label><br>
+        <input type="password" name="password" required><br><br>
+
+        <label>Phone:</label><br>
+        <input type="text" name="phone"><br><br>
+
+        <label>Age:</label><br>
+        <input type="number" name="age" required><br><br>
+
+        <label>Gender:</label><br>            
+        <select name="gender" required>
+            <option value="">Select</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Others</option>
+        </select><br><br>
+
+        <button type="submit">Register</button>
+
+    </form>
+
+    <br>
+    <p>Already have account? <a href="/patient/login">Login</a></p>
+
+</body>
+</html>

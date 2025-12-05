@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Registration</title>
+    <style>
+        #preview {
+            width: 150px;
+            height: 150px;
+            border: 1px solid #777;
+            margin-top: 10px;
+            object-fit: cover;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>Doctor Registration</h2>
+
+    <form action="/doctor/register" method="POST" enctype="multipart/form-data">
+
+    <label>Name:</label><br>
+    <input type="text" name="name" required><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" name="email" required><br><br>
+
+    <label>Password:</label><br>
+    <input type="password" name="password" required><br><br>
+
+    <label>Specialization:</label><br>
+    <input type="text" name="specialization"><br><br>
+
+    <label>Experience:</label><br>
+    <input type="text" name="experience"><br><br>
+
+    <label>Phone Number:</label><br>
+    <input type="text" name="phoneno"><br><br>
+
+    <label>Upload Photo:</label><br>
+    <input type="file" id="photoInput" name="photo" accept="image/*" required><br><br>
+
+    <img id="preview" src="#" alt="Image Preview">
+
+    <br><br>
+    <button type="submit">Register</button>
+    
+
+</form>
+<br>
+<p>Already have account? <a href="/doctor/login">Login</a></p>
+
+
+<script>
+    const photoInput = document.getElementById("photoInput");
+    const preview = document.getElementById("preview");
+
+    photoInput.addEventListener("change", function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            preview.src = URL.createObjectURL(file);
+            preview.style.display = "block";
+        }
+    });
+</script>
+</body>
+</html>

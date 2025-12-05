@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            padding: 12px;
+            color: white;
+        }
+
+        .navbar a {
+            color: white;
+            margin-right: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        table {
+            width: 60%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, tr, td, th {
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        h2, h3 {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="/doctor/set_availability/{{ doctor.id }}">Set Availability</a>
+    <a href="/doctor/appointments/{{ doctor.id }}">View Booked Appointments</a>
+</div>
+
+
+<h2>Welcome Dr. {{ doctor.name }}</h2>
+
+<h3>Your Availability</h3>
+
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Slot</th>
+    </tr>
+
+    {% for a in availability %}
+    <tr>
+        <td>{{ a.date }}</td>
+        <td>{{ a.slot }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

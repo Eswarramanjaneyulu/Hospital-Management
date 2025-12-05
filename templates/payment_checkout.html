@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Appointment Payment</title>
+</head>
+<body>
+
+<h2>Pay for Appointment (₹{{ amount }})</h2>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+var options = {
+    "key": "{{ RAZORPAY_KEY_ID }}",
+    "amount": "{{ amount * 100 }}",
+    "currency": "INR",
+    "name": "Hospital Appointment",
+    "description": "Booking for Dr. {{ doctor.name }}",
+    "order_id": "{{ razorpay_order_id }}",
+
+    "handler": function (response){
+        document.getElementById("payment_id").value = response.razorpay_payment_id;
+        document.getElementById("order_id").value = response.razorpay_order_id;
+        document.getElementById("signature").value = response.razorpay_signature;
+        document.getElementById("verifyForm").submit();
+    }
+};
+
+var rzp1 = new Razorpay(options);
+rzp1.open();
+</script>
+
+<form id="verifyForm" action="/payment/verify" method="POST">
+    <input type="hidden" name="razorpay_payment_id" id="payment_id">
+    <input type="hidden" name="razorpay_order_id" id="order_id">
+    <input type="hidden" name="razorpay_signature" id="signature">
+
+    <input type="hidden" name="patient_id" value="{{ patient_id }}">
+    <input type="hidden" name="doctor_id" value="{{ doctor.id }}">
+    <input type="hidden" name="slot_id" value="{{ slot_id }}">
+</form>
+
+</body>
+</html>
