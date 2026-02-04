@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Doctor Profile</title>
+</head>
+<body>
+
+<h2>Edit Doctor Profile</h2>
+
+<img src="/{{ doctor.photo }}" width="150"><br><br>
+
+<form method="POST" enctype="multipart/form-data">
+
+    <input type="text" name="name" value="{{ doctor.name }}" required><br><br>
+    <input type="email" name="email" value="{{ doctor.email }}" required><br><br>
+    <input type="text" name="password" value="{{ doctor.password }}" required><br><br>
+    
+    <input type="text" name="specialization" value="{{ doctor.specialization }}" required><br><br>
+    <input type="number" name="experience" value="{{ doctor.experience }}" required><br><br>
+    <input type="text" name="phoneno" value="{{ doctor.phoneno }}" required><br><br>
+
+    <label>Change Profile Image</label><br>
+    <input type="file" name="photo"><br><br>
+
+    <button type="submit">Update Profile</button>
+</form>
+
+<br>
+<a href="/doctor/dashboard/{{ doctor.id }}">⬅ Back to Dashboard</a>
+
+</body>
+</html>

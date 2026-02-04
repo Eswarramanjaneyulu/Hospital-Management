@@ -294,6 +294,48 @@ def doctor_appointments(doctor_id):
                            doctor=doctor,
                            appointments=appointments)
 
+@app.route('/doctor/edit_profile/<int:doctor_id>', methods=['GET', 'POST'])
+def edit_doctor_profile(doctor_id):
+
+    cursor.execute("SELECT * FROM doctors WHERE id=%s", (doctor_id,))
+    doctor = cursor.fetchone()
+
+    if request.method == "POST":
+
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
+        specialization = request.form['specialization']
+        experience = request.form['experience']
+        phoneno = request.form['phoneno']
+
+        photo = request.files['photo']
+
+        if photo and photo.filename != "":
+            filename = photo.filename
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            photo.save(filepath)
+            db_path = f"static/uploads/{filename}"
+
+            cursor.execute("""
+                UPDATE doctors 
+                SET name=%s, email=%s, password=%s, specialization=%s,
+                    experience=%s, phoneno=%s, photo=%s
+                WHERE id=%s
+            """, (name, email, password, specialization, experience, phoneno, db_path, doctor_id))
+
+        else:
+            cursor.execute("""
+                UPDATE doctors 
+                SET name=%s, email=%s, password=%s, specialization=%s,
+                    experience=%s, phoneno=%s
+                WHERE id=%s
+            """, (name, email, password, specialization, experience, phoneno, doctor_id))
+
+        db.commit()
+        return redirect(f"/doctor/dashboard/{doctor_id}")
+
+    return render_template("doctor_edit_profile.html", doctor=doctor)
 
 @app.route('/logout')
 def logout():
